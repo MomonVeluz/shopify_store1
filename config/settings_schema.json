@@ -1,12 +1,11 @@
 [
   {
-    "name": "Theme info",
-    "settings": [
-      {
-        "type": "paragraph",
-        "content": "TechCore PH is a mobile-first Online Store 2.0 theme scaffold for Philippine tech retail."
-      }
-    ]
+    "name": "theme_info",
+    "theme_name": "TechCore PH",
+    "theme_version": "1.0.0",
+    "theme_author": "TechCore PH",
+    "theme_documentation_url": "https://help.shopify.com/en/manual/online-store/themes",
+    "theme_support_url": "https://help.shopify.com/"
   },
   {
     "name": "Colors",
