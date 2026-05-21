@@ -14,61 +14,61 @@
         "type": "color",
         "id": "color_background",
         "label": "Background",
-        "default": "#0B0F19"
+        "default": "#F6F8FB"
       },
       {
         "type": "color",
         "id": "color_surface",
         "label": "Surface/card",
-        "default": "#111827"
+        "default": "#FFFFFF"
       },
       {
         "type": "color",
         "id": "color_surface_light",
         "label": "Surface light",
-        "default": "#1F2937"
+        "default": "#EEF3F8"
       },
       {
         "type": "color",
         "id": "color_primary",
         "label": "Primary accent",
-        "default": "#00A3FF"
+        "default": "#0B63CE"
       },
       {
         "type": "color",
         "id": "color_secondary",
         "label": "Secondary accent",
-        "default": "#22D3EE"
+        "default": "#0891B2"
       },
       {
         "type": "color",
         "id": "color_text",
         "label": "Primary text",
-        "default": "#F9FAFB"
+        "default": "#111827"
       },
       {
         "type": "color",
         "id": "color_muted",
         "label": "Secondary text",
-        "default": "#9CA3AF"
+        "default": "#5B6472"
       },
       {
         "type": "color",
         "id": "color_success",
         "label": "Success",
-        "default": "#22C55E"
+        "default": "#16A34A"
       },
       {
         "type": "color",
         "id": "color_warning",
         "label": "Warning",
-        "default": "#F59E0B"
+        "default": "#D97706"
       },
       {
         "type": "color",
         "id": "color_sale",
         "label": "Sale/red",
-        "default": "#EF4444"
+        "default": "#DC2626"
       }
     ]
   },

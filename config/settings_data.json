@@ -1,15 +1,15 @@
 {
   "current": {
-    "color_background": "#0B0F19",
-    "color_surface": "#111827",
-    "color_surface_light": "#1F2937",
-    "color_primary": "#00A3FF",
-    "color_secondary": "#22D3EE",
-    "color_text": "#F9FAFB",
-    "color_muted": "#9CA3AF",
-    "color_success": "#22C55E",
-    "color_warning": "#F59E0B",
-    "color_sale": "#EF4444",
+    "color_background": "#F6F8FB",
+    "color_surface": "#FFFFFF",
+    "color_surface_light": "#EEF3F8",
+    "color_primary": "#0B63CE",
+    "color_secondary": "#0891B2",
+    "color_text": "#111827",
+    "color_muted": "#5B6472",
+    "color_success": "#16A34A",
+    "color_warning": "#D97706",
+    "color_sale": "#DC2626",
     "font_heading": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
     "font_body": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
   }
