@@ -60,6 +60,6 @@
     </main>
 
     {% section 'footer' %}
-    {{ 'theme.js' | asset_url | script_tag }}
+    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
   </body>
 </html>
