@@ -1,0 +1,38 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product-techcore",
+      "blocks": {
+        "shipping": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you deliver outside Metro Manila?",
+            "answer": "<p>Yes. Provincial shipping options can be arranged depending on item size, value, and courier availability.</p>"
+          }
+        },
+        "payments": {
+          "type": "faq",
+          "settings": {
+            "question": "What payment options are available?",
+            "answer": "<p>TechCore PH can support GCash, Maya, card payments, bank transfer, and COD in selected areas when enabled in checkout.</p>"
+          }
+        },
+        "compatibility": {
+          "type": "faq",
+          "settings": {
+            "question": "Can you check compatibility before I order?",
+            "answer": "<p>Yes. Send your current parts list or target build so the team can confirm socket, chipset, RAM, PSU, and case compatibility.</p>"
+          }
+        }
+      },
+      "block_order": ["shipping", "payments", "compatibility"],
+      "settings": {
+        "show_dynamic_checkout": true,
+        "fallback_image_url": "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=1300&q=80",
+        "default_warranty": "Store warranty support available",
+        "default_box_contents": "<p>Product unit, official packaging, included accessories, and receipt.</p>"
+      }
+    }
+  },
+  "order": ["main"]
+}

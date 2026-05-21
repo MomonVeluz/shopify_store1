@@ -1,0 +1,33 @@
+<section class="tc-section">
+  <div class="tc-container">
+    <div class="tc-section__header">
+      <h2 class="tc-section__title">{{ section.settings.title }}</h2>
+    </div>
+    <div class="tc-seo-copy tc-rte">
+      {{ section.settings.text }}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "SEO content",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Laptops and Computer Parts in the Philippines"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Shop laptops, gaming PCs, computer parts, and accessories in the Philippines. Find performance laptops, CPUs, GPUs, motherboards, RAM, SSDs, monitors, and peripherals for gaming, business, school, and content creation.</p>"
+    }
+  ],
+  "presets": [
+    { "name": "SEO content" }
+  ]
+}
+{% endschema %}

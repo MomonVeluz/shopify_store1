@@ -1,0 +1,26 @@
+<section class="tc-band">
+  <div class="tc-container tc-band__inner">
+    <div>
+      <p class="tc-eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2 class="tc-section__title">{{ section.settings.title }}</h2>
+      <p class="tc-muted">{{ section.settings.text }}</p>
+    </div>
+    <a class="tc-button tc-button--secondary" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Deal banner",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Limited offers" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Upgrade Deals" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Save on selected SSDs, RAM kits, monitors, and peripherals." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop Deals" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "presets": [
+    { "name": "Deal banner" }
+  ]
+}
+{% endschema %}

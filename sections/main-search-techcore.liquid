@@ -1,0 +1,53 @@
+<section class="tc-page-hero">
+  <div class="tc-container">
+    <p class="tc-eyebrow">Product search</p>
+    <h1 class="tc-page-title">Search TechCore PH</h1>
+    <form class="tc-search" action="{{ routes.search_url }}" method="get" role="search" style="display:flex;max-width:720px;margin-top:1rem">
+      <input type="hidden" name="type" value="product">
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search laptops, GPUs, SSDs..." aria-label="Search products">
+      <button type="submit">Search</button>
+    </form>
+  </div>
+</section>
+
+<section class="tc-container tc-page-body">
+  {% if search.performed %}
+    <div class="tc-section__header">
+      <h2 class="tc-section__title">{{ search.results_count }} results for "{{ search.terms }}"</h2>
+    </div>
+
+    {% paginate search.results by 24 %}
+      {% if search.results_count > 0 %}
+        <div class="tc-product-grid">
+          {% for item in search.results %}
+            {% if item.object_type == 'product' %}
+              {% render 'product-card-techcore', product: item %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="tc-page-card">
+          <h2>No products found</h2>
+          <p>Try a brand, category, or part name such as RTX, SSD, RAM, ThinkPad, or monitor.</p>
+        </div>
+      {% endif %}
+
+      {% if paginate.pages > 1 %}
+        <nav class="tc-pagination" role="navigation" aria-label="Pagination">
+          {{ paginate | default_pagination }}
+        </nav>
+      {% endif %}
+    {% endpaginate %}
+  {% else %}
+    <div class="tc-page-card">
+      <h2>Search by specs, brand, or category</h2>
+      <p>Try laptops, graphics cards, processors, RAM, SSDs, monitors, keyboards, or networking gear.</p>
+    </div>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Search"
+}
+{% endschema %}

@@ -1,0 +1,25 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page-techcore",
+      "blocks": {
+        "privacy": {
+          "type": "rich_text",
+          "settings": {
+            "title": "Privacy Policy starter",
+            "text": "<p>Describe what customer data TechCore PH collects, how orders are processed, how payment and delivery partners are used, how customers can request support, and how data is protected. Replace this starter text with your final legal policy before launch.</p>"
+          }
+        }
+      },
+      "block_order": ["privacy"],
+      "settings": {
+        "eyebrow": "Policy",
+        "title": "Privacy Policy",
+        "intro": "A merchant-editable starter page for your final privacy policy.",
+        "show_page_content": true,
+        "form_mode": "none"
+      }
+    }
+  },
+  "order": ["main"]
+}

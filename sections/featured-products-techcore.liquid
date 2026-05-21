@@ -1,0 +1,73 @@
+{% liquid
+  assign featured_collection = section.settings.collection
+  assign product_limit = section.settings.product_limit
+%}
+
+<section class="tc-section">
+  <div class="tc-container">
+    <div class="tc-section__header">
+      <p class="tc-eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2 class="tc-section__title">{{ section.settings.title }}</h2>
+      {% if section.settings.text != blank %}
+        <p class="tc-muted">{{ section.settings.text }}</p>
+      {% endif %}
+    </div>
+
+    <div class="tc-product-grid">
+      {% if featured_collection != blank and featured_collection.products_count > 0 %}
+        {% for product in featured_collection.products limit: product_limit %}
+          {% render 'product-card-techcore', product: product %}
+        {% endfor %}
+      {% else %}
+        {% for index in (1..8) %}
+          {% render 'product-card-techcore' %}
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Top picks"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Best Sellers"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Fast-moving laptops, components, monitors, and accessories selected for Philippine buyers."
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "product_limit",
+      "label": "Products to show",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured products"
+    }
+  ]
+}
+{% endschema %}

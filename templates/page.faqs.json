@@ -1,0 +1,46 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page-techcore",
+      "blocks": {
+        "cod": {
+          "type": "faq",
+          "settings": {
+            "question": "Is COD available?",
+            "answer": "<p>COD can be offered for selected areas and items depending on order value, courier limits, and stock confirmation.</p>"
+          }
+        },
+        "payments": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you accept GCash, Maya, cards, and bank transfer?",
+            "answer": "<p>Yes. Enable the payment methods available to your Shopify store and update this answer with final payment instructions.</p>"
+          }
+        },
+        "compatibility": {
+          "type": "faq",
+          "settings": {
+            "question": "Can you check if parts are compatible?",
+            "answer": "<p>Yes. Send your current build or target parts list before ordering CPUs, motherboards, RAM, GPUs, PSUs, coolers, and cases.</p>"
+          }
+        },
+        "bulk": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you handle bulk orders?",
+            "answer": "<p>Use the contact page for team laptops, office peripherals, workstations, and recurring procurement requests.</p>"
+          }
+        }
+      },
+      "block_order": ["cod", "payments", "compatibility", "bulk"],
+      "settings": {
+        "eyebrow": "Help center",
+        "title": "Frequently Asked Questions",
+        "intro": "Answers for delivery, payments, warranty, compatibility, and bulk buying.",
+        "show_page_content": true,
+        "form_mode": "none"
+      }
+    }
+  },
+  "order": ["main"]
+}

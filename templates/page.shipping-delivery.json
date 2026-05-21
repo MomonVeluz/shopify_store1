@@ -1,0 +1,32 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page-techcore",
+      "blocks": {
+        "metro_manila": {
+          "type": "rich_text",
+          "settings": {
+            "title": "Metro Manila delivery and pickup",
+            "text": "<p>Offer free Metro Manila delivery for eligible orders above ₱50,000, same-day pickup where available, and delivery schedules based on stock location and order confirmation.</p>"
+          }
+        },
+        "provincial": {
+          "type": "rich_text",
+          "settings": {
+            "title": "Provincial shipping",
+            "text": "<p>For provincial orders, confirm item size, declared value, courier availability, shipping insurance, and estimated delivery window before fulfillment.</p>"
+          }
+        }
+      },
+      "block_order": ["metro_manila", "provincial"],
+      "settings": {
+        "eyebrow": "Shipping",
+        "title": "Shipping & Delivery",
+        "intro": "Clear delivery expectations for laptops, components, monitors, and accessories.",
+        "show_page_content": true,
+        "form_mode": "none"
+      }
+    }
+  },
+  "order": ["main"]
+}

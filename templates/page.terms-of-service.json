@@ -1,0 +1,25 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page-techcore",
+      "blocks": {
+        "terms": {
+          "type": "rich_text",
+          "settings": {
+            "title": "Terms of Service starter",
+            "text": "<p>Define order acceptance, pricing, stock availability, warranty limits, return rules, delivery terms, payment conditions, COD limits, and customer responsibilities. Replace this starter text with your final legal terms before launch.</p>"
+          }
+        }
+      },
+      "block_order": ["terms"],
+      "settings": {
+        "eyebrow": "Policy",
+        "title": "Terms of Service",
+        "intro": "A merchant-editable starter page for your final store terms.",
+        "show_page_content": true,
+        "form_mode": "none"
+      }
+    }
+  },
+  "order": ["main"]
+}

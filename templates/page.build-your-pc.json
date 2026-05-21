@@ -1,0 +1,27 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page-techcore",
+      "blocks": {
+        "how_it_works": {
+          "type": "rich_text",
+          "settings": {
+            "title": "How custom PC quotes work",
+            "text": "<p>Share your budget, games, apps, preferred parts, monitor resolution, and upgrade plans. TechCore PH can recommend compatible CPU, GPU, motherboard, RAM, storage, case, PSU, and cooling options.</p>"
+          }
+        }
+      },
+      "block_order": ["how_it_works"],
+      "settings": {
+        "eyebrow": "Custom PC Builds",
+        "title": "Request a Build Quote",
+        "intro": "Get a parts recommendation for gaming, editing, streaming, CAD, office work, or workstation use.",
+        "show_page_content": true,
+        "form_mode": "build_quote",
+        "form_title": "Tell us your build requirements",
+        "form_button_label": "Request build quote"
+      }
+    }
+  },
+  "order": ["main"]
+}

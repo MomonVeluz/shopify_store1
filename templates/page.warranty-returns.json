@@ -1,0 +1,32 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page-techcore",
+      "blocks": {
+        "warranty": {
+          "type": "rich_text",
+          "settings": {
+            "title": "Warranty support",
+            "text": "<p>Warranty coverage depends on brand, product category, and official distributor terms. Customers should keep receipts, serial numbers, accessories, and packaging when possible.</p>"
+          }
+        },
+        "returns": {
+          "type": "rich_text",
+          "settings": {
+            "title": "Returns and exchanges",
+            "text": "<p>Set clear rules for unopened items, defective items, inspection timelines, exclusions, and courier handling. Update this content to match your final store policy.</p>"
+          }
+        }
+      },
+      "block_order": ["warranty", "returns"],
+      "settings": {
+        "eyebrow": "Support",
+        "title": "Warranty & Returns",
+        "intro": "Help customers understand warranty coverage, service steps, and return conditions before they buy.",
+        "show_page_content": true,
+        "form_mode": "none"
+      }
+    }
+  },
+  "order": ["main"]
+}

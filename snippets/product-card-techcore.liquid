@@ -1,0 +1,48 @@
+{% liquid
+  assign card_product = product
+  assign placeholder_image = placeholder | default: 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=900&q=80'
+  if card_product != blank and card_product.featured_media != blank
+    assign card_image_alt = card_product.featured_media.alt | default: card_product.title
+  endif
+%}
+
+<article class="tc-product-card">
+  <a class="tc-product-card__media" href="{% if card_product != blank %}{{ card_product.url }}{% else %}#{% endif %}" aria-label="{% if card_product != blank %}View {{ card_product.title | escape }}{% else %}Sample product{% endif %}">
+    {% if card_product != blank and card_product.featured_media != blank %}
+      {{ card_product.featured_media | image_url: width: 800 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 25vw, (min-width: 640px) 50vw, 100vw', class: 'tc-product-card__image', alt: card_image_alt }}
+    {% else %}
+      <img class="tc-product-card__image" src="{{ placeholder_image }}" alt="Tech product placeholder image" loading="lazy" width="800" height="600">
+    {% endif %}
+  </a>
+
+  <div class="tc-product-card__body">
+    {% if card_product != blank %}
+      <p class="tc-product-card__vendor">{{ card_product.vendor }}</p>
+      <h3 class="tc-product-card__title">
+        <a href="{{ card_product.url }}">{{ card_product.title }}</a>
+      </h3>
+      {% render 'key-specs', product: card_product, limit: 3 %}
+      {% render 'price-techcore', product: card_product %}
+      {% render 'product-badges', product: card_product %}
+
+      {% if card_product.available %}
+        {% form 'product', card_product, class: 'tc-product-card__form' %}
+          <input type="hidden" name="id" value="{{ card_product.selected_or_first_available_variant.id }}">
+          <button class="tc-button tc-button--full tc-button--small" type="submit">Quick add</button>
+        {% endform %}
+      {% else %}
+        <button class="tc-button tc-button--full tc-button--small" type="button" disabled>Sold out</button>
+      {% endif %}
+    {% else %}
+      <p class="tc-product-card__vendor">TechCore PH</p>
+      <h3 class="tc-product-card__title"><a href="#">Sample performance product</a></h3>
+      {% render 'key-specs', specs: 'Intel Core i5, RTX Graphics, 16GB RAM', limit: 3 %}
+      <div class="tc-price"><span class="tc-price__current">{{ 4899500 | money }}</span><s class="tc-price__compare">{{ 5299500 | money }}</s></div>
+      <div class="tc-badges">
+        <span class="tc-badge tc-badge--success">In stock</span>
+        <span class="tc-badge tc-badge--neutral">1-Year Warranty</span>
+      </div>
+      <button class="tc-button tc-button--full tc-button--small" type="button">Quick add</button>
+    {% endif %}
+  </div>
+</article>

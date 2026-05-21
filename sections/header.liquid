@@ -1,0 +1,126 @@
+{% liquid
+  assign nav_menu = section.settings.menu
+%}
+
+<header class="tc-header" role="banner">
+  <div class="tc-container tc-header__inner">
+    <a class="tc-logo" href="{{ routes.root_url }}" aria-label="{{ section.settings.store_name | escape }} home">
+      <span class="tc-logo__mark" aria-hidden="true">TC</span>
+      <span>{{ section.settings.store_name }}</span>
+    </a>
+
+    <form class="tc-search" action="{{ routes.search_url }}" method="get" role="search">
+      <input type="hidden" name="type" value="product">
+      <input
+        type="search"
+        name="q"
+        value="{{ search.terms | escape }}"
+        placeholder="{{ section.settings.search_placeholder }}"
+        aria-label="Search products"
+      >
+      <button type="submit" aria-label="Search">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="m21 19.6-5.3-5.3a7.5 7.5 0 1 0-1.4 1.4L19.6 21 21 19.6ZM4 10a6 6 0 1 1 12 0 6 6 0 0 1-12 0Z"/></svg>
+      </button>
+    </form>
+
+    <div class="tc-header__actions">
+      <a class="tc-icon-button" href="{{ routes.search_url }}" aria-label="Open search">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m21 19.6-5.3-5.3a7.5 7.5 0 1 0-1.4 1.4L19.6 21 21 19.6ZM4 10a6 6 0 1 1 12 0 6 6 0 0 1-12 0Z"/></svg>
+      </a>
+      <a class="tc-icon-button" href="{{ routes.cart_url }}" aria-label="Cart">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 4h-3v2h2l2.4 9.6A2 2 0 0 0 10.3 17H18v-2h-7.7l-.5-2H18a2 2 0 0 0 1.9-1.4L22 5H8.1L7.7 3.5A2 2 0 0 0 5.8 2H4v2h3Zm2.1 3H19l-1.3 4H10.1L9.1 7ZM10 22a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm8 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/></svg>
+        {% if cart.item_count > 0 %}
+          <span class="tc-cart-count">{{ cart.item_count }}</span>
+        {% endif %}
+      </a>
+      <button class="tc-icon-button" type="button" aria-label="Open menu" aria-expanded="false" data-drawer-toggle>
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 6h16v2H4V6Zm0 5h16v2H4v-2Zm0 5h16v2H4v-2Z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <nav class="tc-nav" aria-label="Main navigation">
+    <div class="tc-container">
+      <ul class="tc-nav__list">
+        {% if nav_menu != blank and nav_menu.links.size > 0 %}
+          {% for link in nav_menu.links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        {% else %}
+          <li><a href="/collections/laptops">Laptops</a></li>
+          <li><a href="/collections/pc-parts">PC Parts</a></li>
+          <li><a href="/collections/gaming">Gaming</a></li>
+          <li><a href="/collections/workstations">Workstations</a></li>
+          <li><a href="/collections/accessories">Accessories</a></li>
+          <li><a href="/collections/deals">Deals</a></li>
+          <li><a href="/pages/build-your-pc">Build Your PC</a></li>
+          <li><a href="/pages/contact-us">Support</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<div class="tc-mobile-drawer" data-mobile-drawer hidden>
+  <div class="tc-mobile-drawer__panel" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    <div class="tc-mobile-drawer__head">
+      <a class="tc-logo" href="{{ routes.root_url }}">
+        <span class="tc-logo__mark" aria-hidden="true">TC</span>
+        <span>{{ section.settings.store_name }}</span>
+      </a>
+      <button class="tc-icon-button" type="button" aria-label="Close menu" data-drawer-close>
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6.4 5 12.6 12.6-1.4 1.4L5 6.4 6.4 5Zm12.6 1.4L6.4 19 5 17.6 17.6 5 19 6.4Z"/></svg>
+      </button>
+    </div>
+
+    <form class="tc-search" action="{{ routes.search_url }}" method="get" role="search" style="display:flex">
+      <input type="hidden" name="type" value="product">
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ section.settings.search_placeholder }}" aria-label="Search products">
+      <button type="submit" aria-label="Search">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="m21 19.6-5.3-5.3a7.5 7.5 0 1 0-1.4 1.4L19.6 21 21 19.6ZM4 10a6 6 0 1 1 12 0 6 6 0 0 1-12 0Z"/></svg>
+      </button>
+    </form>
+
+    <ul>
+      {% if nav_menu != blank and nav_menu.links.size > 0 %}
+        {% for link in nav_menu.links %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+      {% else %}
+        <li><a href="/collections/laptops">Laptops</a></li>
+        <li><a href="/collections/pc-parts">PC Parts</a></li>
+        <li><a href="/collections/gaming">Gaming</a></li>
+        <li><a href="/collections/workstations">Workstations</a></li>
+        <li><a href="/collections/accessories">Accessories</a></li>
+        <li><a href="/collections/deals">Deals</a></li>
+        <li><a href="/pages/build-your-pc">Build Your PC</a></li>
+        <li><a href="/pages/contact-us">Support</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "store_name",
+      "label": "Store name",
+      "default": "TechCore PH"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Main menu"
+    },
+    {
+      "type": "text",
+      "id": "search_placeholder",
+      "label": "Search placeholder",
+      "default": "Search laptops, GPUs, SSDs..."
+    }
+  ]
+}
+{% endschema %}

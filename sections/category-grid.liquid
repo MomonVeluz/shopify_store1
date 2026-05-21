@@ -1,0 +1,93 @@
+<section class="tc-section">
+  <div class="tc-container">
+    <div class="tc-section__header">
+      <p class="tc-eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2 class="tc-section__title">{{ section.settings.title }}</h2>
+      {% if section.settings.text != blank %}
+        <p class="tc-muted">{{ section.settings.text }}</p>
+      {% endif %}
+    </div>
+
+    <div class="tc-grid tc-grid--5">
+      {% for block in section.blocks %}
+        <a class="tc-category-card" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+          <img src="{{ block.settings.image_url }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="700" height="500">
+          <span class="tc-category-card__body">
+            <h3>{{ block.settings.title }}</h3>
+            {% if block.settings.text != blank %}
+              <p>{{ block.settings.text }}</p>
+            {% endif %}
+          </span>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Category grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Shop by category"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Find your next upgrade"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Browse laptops, PC parts, peripherals, networking gear, and workstation essentials."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Gaming Laptops"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Short text",
+          "default": "Portable power"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "image_url",
+          "label": "Image URL",
+          "default": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=900&q=80"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category grid",
+      "blocks": [
+        { "type": "category", "settings": { "title": "Gaming Laptops", "text": "High-FPS rigs", "link": "/collections/gaming-laptops", "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=900&q=80" } },
+        { "type": "category", "settings": { "title": "Business Laptops", "text": "Reliable work machines", "link": "/collections/business-laptops", "image_url": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" } },
+        { "type": "category", "settings": { "title": "CPUs", "text": "Intel and AMD", "link": "/collections/cpus", "image_url": "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=900&q=80" } },
+        { "type": "category", "settings": { "title": "Graphics Cards", "text": "Gaming and creator GPUs", "link": "/collections/graphics-cards", "image_url": "https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=900&q=80" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,151 @@
+<section class="tc-page-hero">
+  <div class="tc-container">
+    {% if section.settings.eyebrow != blank %}
+      <p class="tc-eyebrow">{{ section.settings.eyebrow }}</p>
+    {% endif %}
+    <h1 class="tc-page-title">{{ section.settings.title | default: page.title }}</h1>
+    {% if section.settings.intro != blank %}
+      <p class="tc-seo-copy">{{ section.settings.intro }}</p>
+    {% endif %}
+  </div>
+</section>
+
+<section class="tc-container tc-page-body">
+  {% if section.settings.show_page_content and page.content != blank %}
+    <div class="tc-rte">{{ page.content }}</div>
+  {% endif %}
+
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {% when 'rich_text' %}
+        <div class="tc-page-card" {{ block.shopify_attributes }}>
+          <h2>{{ block.settings.title }}</h2>
+          <div class="tc-rte">{{ block.settings.text }}</div>
+        </div>
+      {% when 'feature' %}
+        <div class="tc-page-card" {{ block.shopify_attributes }}>
+          <p class="tc-eyebrow">{{ block.settings.eyebrow }}</p>
+          <h2>{{ block.settings.title }}</h2>
+          <p>{{ block.settings.text }}</p>
+        </div>
+      {% when 'faq' %}
+        <div class="tc-accordion" {{ block.shopify_attributes }}>
+          <details>
+            <summary>{{ block.settings.question }}</summary>
+            <div class="tc-accordion__body">{{ block.settings.answer }}</div>
+          </details>
+        </div>
+    {% endcase %}
+  {% endfor %}
+
+  {% if section.settings.form_mode != 'none' %}
+    <div class="tc-page-card">
+      <h2>{{ section.settings.form_title }}</h2>
+      {% form 'contact', class: 'tc-contact-form' %}
+        {% if form.posted_successfully? %}
+          <div class="tc-alert tc-alert--success">Thanks. We received your message and will get back to you soon.</div>
+        {% endif %}
+        {% if form.errors %}
+          <div class="tc-alert tc-alert--error">{{ form.errors | default_errors }}</div>
+        {% endif %}
+
+        <div class="tc-form-grid">
+          <div class="tc-form-field">
+            <label for="ContactFormName-{{ section.id }}">Name</label>
+            <input id="ContactFormName-{{ section.id }}" type="text" name="contact[name]" autocomplete="name" required>
+          </div>
+          <div class="tc-form-field">
+            <label for="ContactFormEmail-{{ section.id }}">Email</label>
+            <input id="ContactFormEmail-{{ section.id }}" type="email" name="contact[email]" autocomplete="email" required>
+          </div>
+        </div>
+
+        <div class="tc-form-field">
+          <label for="ContactFormPhone-{{ section.id }}">Phone</label>
+          <input id="ContactFormPhone-{{ section.id }}" type="tel" name="contact[phone]" autocomplete="tel">
+        </div>
+
+        {% if section.settings.form_mode == 'build_quote' %}
+          <div class="tc-form-grid">
+            <div class="tc-form-field">
+              <label for="BuildBudget-{{ section.id }}">Budget range</label>
+              <input id="BuildBudget-{{ section.id }}" type="text" name="contact[Budget range]" placeholder="Example: ₱60,000 to ₱90,000">
+            </div>
+            <div class="tc-form-field">
+              <label for="BuildUse-{{ section.id }}">Main use</label>
+              <input id="BuildUse-{{ section.id }}" type="text" name="contact[Main use]" placeholder="Gaming, CAD, editing, office, streaming">
+            </div>
+          </div>
+          <div class="tc-form-field">
+            <label for="BuildPreference-{{ section.id }}">Preferred parts or software</label>
+            <input id="BuildPreference-{{ section.id }}" type="text" name="contact[Preferred parts or software]" placeholder="Games, apps, CPU/GPU preference, monitor resolution">
+          </div>
+        {% endif %}
+
+        <div class="tc-form-field">
+          <label for="ContactFormMessage-{{ section.id }}">Message</label>
+          <textarea id="ContactFormMessage-{{ section.id }}" name="contact[body]" rows="6" required></textarea>
+        </div>
+
+        <button class="tc-button" type="submit">{{ section.settings.form_button_label }}</button>
+      {% endform %}
+    </div>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Page content",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "title", "label": "Custom title" },
+    { "type": "textarea", "id": "intro", "label": "Intro text" },
+    { "type": "checkbox", "id": "show_page_content", "label": "Show Shopify page content", "default": true },
+    {
+      "type": "select",
+      "id": "form_mode",
+      "label": "Form mode",
+      "default": "none",
+      "options": [
+        { "value": "none", "label": "No form" },
+        { "value": "contact", "label": "Contact form" },
+        { "value": "build_quote", "label": "Build quote form" }
+      ]
+    },
+    { "type": "text", "id": "form_title", "label": "Form title", "default": "Send us a message" },
+    { "type": "text", "id": "form_button_label", "label": "Form button label", "default": "Submit request" }
+  ],
+  "blocks": [
+    {
+      "type": "rich_text",
+      "name": "Rich text",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Section title" },
+        { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Add page details here.</p>" }
+      ]
+    },
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "TechCore PH" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Feature title" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Add a concise merchant-editable feature description." }
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "FAQ",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Question" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Answer goes here.</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Page content"
+    }
+  ]
+}
+{% endschema %}

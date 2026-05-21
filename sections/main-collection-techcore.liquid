@@ -1,0 +1,178 @@
+{% liquid
+  assign sort_by = collection.sort_by | default: collection.default_sort_by
+  assign guide_title = collection.metafields.custom.buying_guide_title.value | default: section.settings.guide_title
+  assign guide_text = collection.metafields.custom.buying_guide.value | default: section.settings.guide_text
+%}
+
+<section class="tc-collection-hero">
+  <div class="tc-container">
+    <p class="tc-eyebrow">{{ section.settings.eyebrow }}</p>
+    <h1 class="tc-page-title">{{ collection.title }}</h1>
+    {% if collection.description != blank %}
+      <div class="tc-seo-copy tc-rte">{{ collection.description }}</div>
+    {% elsif section.settings.fallback_description != blank %}
+      <p class="tc-seo-copy">{{ section.settings.fallback_description }}</p>
+    {% endif %}
+  </div>
+</section>
+
+<div class="tc-container tc-collection-layout">
+  <aside class="tc-facets" aria-label="Collection filters">
+    <form id="FacetFiltersForm" method="get">
+      <div class="tc-facets__group">
+        <label class="tc-facets__label" for="SortBy">Sort by</label>
+        <select id="SortBy" name="sort_by" data-sort-select>
+          {% for option in collection.sort_options %}
+            <option value="{{ option.value | escape }}" {% if option.value == sort_by %}selected{% endif %}>{{ option.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      {% for filter in collection.filters %}
+        <details class="tc-facets__group" open>
+          <summary>{{ filter.label }}</summary>
+          {% case filter.type %}
+            {% when 'list', 'boolean' %}
+              <ul>
+                {% for value in filter.values %}
+                  <li>
+                    <label>
+                      <input
+                        type="checkbox"
+                        name="{{ value.param_name }}"
+                        value="{{ value.value }}"
+                        {% if value.active %}checked{% endif %}
+                        {% if value.count == 0 and value.active == false %}disabled{% endif %}
+                      >
+                      {{ value.label }} <span class="tc-muted">({{ value.count }})</span>
+                    </label>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% when 'price_range' %}
+              <div class="tc-form-grid" style="margin-top:.7rem">
+                <div class="tc-form-field">
+                  <label for="Filter-{{ filter.min_value.param_name }}">Min</label>
+                  <input
+                    id="Filter-{{ filter.min_value.param_name }}"
+                    name="{{ filter.min_value.param_name }}"
+                    type="number"
+                    min="0"
+                    inputmode="numeric"
+                    value="{% if filter.min_value.value %}{{ filter.min_value.value | money_without_currency | replace: ',', '' }}{% endif %}"
+                  >
+                </div>
+                <div class="tc-form-field">
+                  <label for="Filter-{{ filter.max_value.param_name }}">Max</label>
+                  <input
+                    id="Filter-{{ filter.max_value.param_name }}"
+                    name="{{ filter.max_value.param_name }}"
+                    type="number"
+                    min="0"
+                    inputmode="numeric"
+                    value="{% if filter.max_value.value %}{{ filter.max_value.value | money_without_currency | replace: ',', '' }}{% endif %}"
+                  >
+                </div>
+              </div>
+          {% endcase %}
+        </details>
+      {% endfor %}
+
+      {% if collection.filters.size > 0 %}
+        <button class="tc-button tc-button--full tc-button--small" type="submit">Apply filters</button>
+      {% endif %}
+    </form>
+  </aside>
+
+  <section aria-label="{{ collection.title }} products">
+    <div class="tc-sort">
+      <span class="tc-muted">{{ collection.products_count }} products</span>
+      {% if collection.url %}
+        <a class="tc-button tc-button--ghost tc-button--small" href="{{ collection.url }}">Clear filters</a>
+      {% endif %}
+    </div>
+
+    {% paginate collection.products by section.settings.products_per_page %}
+      {% if collection.products.size > 0 %}
+        <div class="tc-product-grid">
+          {% for product in collection.products %}
+            {% render 'product-card-techcore', product: product %}
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="tc-card" style="padding:1rem">
+          <h2>No products found</h2>
+          <p class="tc-muted">Try adjusting filters or check back for new stock.</p>
+        </div>
+      {% endif %}
+
+      {% if paginate.pages > 1 %}
+        <nav class="tc-pagination" role="navigation" aria-label="Pagination">
+          {{ paginate | default_pagination }}
+        </nav>
+      {% endif %}
+    {% endpaginate %}
+  </section>
+</div>
+
+<section class="tc-section">
+  <div class="tc-container">
+    <div class="tc-card" style="padding:1.2rem">
+      <p class="tc-eyebrow">{{ section.settings.guide_eyebrow }}</p>
+      <h2 class="tc-section__title">{{ guide_title }}</h2>
+      <div class="tc-seo-copy tc-rte">{{ guide_text }}</div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Shop category"
+    },
+    {
+      "type": "textarea",
+      "id": "fallback_description",
+      "label": "Fallback description",
+      "default": "Compare specs, availability, warranties, and pricing before you buy."
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products per page",
+      "min": 8,
+      "max": 48,
+      "step": 4,
+      "default": 24
+    },
+    {
+      "type": "text",
+      "id": "guide_eyebrow",
+      "label": "Guide eyebrow",
+      "default": "Buying guide"
+    },
+    {
+      "type": "text",
+      "id": "guide_title",
+      "label": "Guide title",
+      "default": "How to choose the right upgrade"
+    },
+    {
+      "type": "richtext",
+      "id": "guide_text",
+      "label": "Guide text",
+      "default": "<p>Check compatibility, warranty coverage, power requirements, and delivery options before ordering. For PC parts, confirm socket, chipset, RAM generation, case clearance, and PSU capacity.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection products"
+    }
+  ]
+}
+{% endschema %}

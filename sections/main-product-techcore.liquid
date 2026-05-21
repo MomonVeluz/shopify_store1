@@ -1,0 +1,273 @@
+{% liquid
+  assign selected_variant = product.selected_or_first_available_variant
+  assign warranty_text = product.metafields.custom.warranty.value | default: product.metafields.custom.warranty | default: section.settings.default_warranty
+  assign compatibility_notes = product.metafields.custom.compatibility.value | default: product.metafields.custom.compatibility
+  assign whats_in_box = product.metafields.custom.whats_in_box.value | default: product.metafields.custom.whats_in_box | default: section.settings.default_box_contents
+%}
+
+<div
+  hidden
+  data-current-product
+  data-handle="{{ product.handle }}"
+  data-title="{{ product.title | escape }}"
+  data-url="{{ product.url }}"
+  data-image="{% if product.featured_media != blank %}{{ product.featured_media | image_url: width: 500 }}{% endif %}"
+  data-price="{{ product.price }}"
+></div>
+
+<section class="tc-container tc-product">
+  <div class="tc-product__gallery">
+    <div class="tc-product__main-image">
+      {% if product.featured_media != blank %}
+        <img
+          data-product-main-image
+          src="{{ product.featured_media | image_url: width: 1300 }}"
+          alt="{{ product.featured_media.alt | default: product.title | escape }}"
+          width="1300"
+          height="1000"
+        >
+      {% else %}
+        <img
+          data-product-main-image
+          src="{{ section.settings.fallback_image_url }}"
+          alt="{{ product.title | escape }}"
+          width="1300"
+          height="1000"
+        >
+      {% endif %}
+    </div>
+
+    {% if product.media.size > 1 %}
+      <div class="tc-product__thumbs" aria-label="Product gallery thumbnails">
+        {% for media in product.media limit: 8 %}
+          {% if media.preview_image != blank %}
+            {% assign thumb_alt = media.alt | default: product.title %}
+            <button
+              type="button"
+              class="{% if forloop.first %}is-active{% endif %}"
+              data-product-thumb
+              data-full-image="{{ media.preview_image | image_url: width: 1300 }}"
+              aria-label="Show image {{ forloop.index }}"
+            >
+              {{ media.preview_image | image_url: width: 240 | image_tag: loading: 'lazy', alt: thumb_alt }}
+            </button>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="tc-product__info">
+    <p class="tc-product__vendor">{{ product.vendor }}</p>
+    <h1 class="tc-product__title">{{ product.title }}</h1>
+    {% render 'price-techcore', product: product, variant: selected_variant %}
+    {% render 'product-badges', product: product %}
+
+    <div class="tc-card" style="padding:1rem">
+      <p class="tc-eyebrow">Key specs</p>
+      {% render 'key-specs', product: product, limit: 6 %}
+    </div>
+
+    {% form 'product', product, class: 'tc-product-form' %}
+      {% if product.has_only_default_variant == false %}
+        <div class="tc-form-field">
+          <label for="ProductSelect-{{ section.id }}">Configuration</label>
+          <select id="ProductSelect-{{ section.id }}" name="id">
+            {% for variant in product.variants %}
+              <option
+                value="{{ variant.id }}"
+                {% if variant == selected_variant %}selected="selected"{% endif %}
+                {% unless variant.available %}disabled{% endunless %}
+              >
+                {{ variant.title }}{% unless variant.available %} - Sold out{% endunless %}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+      {% else %}
+        <input type="hidden" name="id" value="{{ selected_variant.id }}">
+      {% endif %}
+
+      <div class="tc-form-field">
+        <label for="Quantity-{{ section.id }}">Quantity</label>
+        <input id="Quantity-{{ section.id }}" type="number" name="quantity" min="1" value="1">
+      </div>
+
+      <button class="tc-button tc-button--full" type="submit" {% unless product.available %}disabled{% endunless %}>
+        {% if product.available %}Add to cart{% else %}Sold out{% endif %}
+      </button>
+
+      {% if section.settings.show_dynamic_checkout %}
+        {{ form | payment_button }}
+      {% endif %}
+    {% endform %}
+
+    {% render 'trust-icons', compact: true %}
+
+    {% if warranty_text != blank %}
+      <div class="tc-card" style="padding:1rem">
+        <p class="tc-eyebrow">Warranty notice</p>
+        <p class="tc-muted" style="margin:0">{{ warranty_text }}. Keep your official receipt and packaging for service validation.</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<section class="tc-container tc-product-panels">
+  {% liquid
+    assign processor = product.metafields.custom.processor.value | default: product.metafields.custom.processor
+    assign graphics = product.metafields.custom.graphics.value | default: product.metafields.custom.graphics
+    assign memory = product.metafields.custom.memory.value | default: product.metafields.custom.memory
+    assign storage = product.metafields.custom.storage.value | default: product.metafields.custom.storage
+    assign display = product.metafields.custom.display.value | default: product.metafields.custom.display
+    assign operating_system = product.metafields.custom.operating_system.value | default: product.metafields.custom.operating_system
+    assign part_type = product.metafields.custom.part_type.value | default: product.metafields.custom.part_type
+    assign socket = product.metafields.custom.socket.value | default: product.metafields.custom.socket
+    assign chipset = product.metafields.custom.chipset.value | default: product.metafields.custom.chipset
+    assign power_requirement = product.metafields.custom.power_requirement.value | default: product.metafields.custom.power_requirement
+    assign has_specs = false
+    if processor != blank or graphics != blank or memory != blank or storage != blank or display != blank or operating_system != blank or part_type != blank or socket != blank or chipset != blank or power_requirement != blank or warranty_text != blank
+      assign has_specs = true
+    endif
+  %}
+
+  {% if has_specs %}
+    <div>
+      <div class="tc-section__header">
+        <p class="tc-eyebrow">Full specifications</p>
+        <h2 class="tc-section__title">Technical Details</h2>
+      </div>
+      <table class="tc-spec-table">
+        <tbody>
+          {% if processor != blank %}<tr><th>Processor</th><td>{{ processor }}</td></tr>{% endif %}
+          {% if graphics != blank %}<tr><th>Graphics</th><td>{{ graphics }}</td></tr>{% endif %}
+          {% if memory != blank %}<tr><th>Memory</th><td>{{ memory }}</td></tr>{% endif %}
+          {% if storage != blank %}<tr><th>Storage</th><td>{{ storage }}</td></tr>{% endif %}
+          {% if display != blank %}<tr><th>Display</th><td>{{ display }}</td></tr>{% endif %}
+          {% if operating_system != blank %}<tr><th>Operating system</th><td>{{ operating_system }}</td></tr>{% endif %}
+          {% if part_type != blank %}<tr><th>Part type</th><td>{{ part_type }}</td></tr>{% endif %}
+          {% if socket != blank %}<tr><th>Socket</th><td>{{ socket }}</td></tr>{% endif %}
+          {% if chipset != blank %}<tr><th>Chipset</th><td>{{ chipset }}</td></tr>{% endif %}
+          {% if power_requirement != blank %}<tr><th>Power requirement</th><td>{{ power_requirement }}</td></tr>{% endif %}
+          {% if warranty_text != blank %}<tr><th>Warranty</th><td>{{ warranty_text }}</td></tr>{% endif %}
+        </tbody>
+      </table>
+    </div>
+  {% endif %}
+
+  {% if compatibility_notes != blank %}
+    <div class="tc-card" style="padding:1rem">
+      <p class="tc-eyebrow">Compatibility notes</p>
+      <div class="tc-rte">{{ compatibility_notes }}</div>
+    </div>
+  {% endif %}
+
+  {% if whats_in_box != blank %}
+    <div class="tc-card" style="padding:1rem">
+      <p class="tc-eyebrow">What's in the box</p>
+      <div class="tc-rte">{{ whats_in_box }}</div>
+    </div>
+  {% endif %}
+
+  {% if section.blocks.size > 0 %}
+    <div>
+      <div class="tc-section__header">
+        <p class="tc-eyebrow">Product help</p>
+        <h2 class="tc-section__title">Frequently Asked Questions</h2>
+      </div>
+      <div class="tc-accordion">
+        {% for block in section.blocks %}
+          <details {{ block.shopify_attributes }}>
+            <summary>{{ block.settings.question }}</summary>
+            <div class="tc-accordion__body">{{ block.settings.answer }}</div>
+          </details>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% assign related_collection = product.collections.first %}
+  {% if related_collection != blank and related_collection.products_count > 1 %}
+    <div>
+      <div class="tc-section__header">
+        <p class="tc-eyebrow">More to compare</p>
+        <h2 class="tc-section__title">Related Products</h2>
+      </div>
+      <div class="tc-product-grid">
+        {% assign rendered_related = 0 %}
+        {% for related_product in related_collection.products %}
+          {% unless related_product.id == product.id %}
+            {% render 'product-card-techcore', product: related_product %}
+            {% assign rendered_related = rendered_related | plus: 1 %}
+          {% endunless %}
+          {% if rendered_related == 4 %}{% break %}{% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  <div data-recently-viewed-section hidden>
+    <div class="tc-section__header">
+      <p class="tc-eyebrow">Recently viewed</p>
+      <h2 class="tc-section__title">Keep Comparing</h2>
+    </div>
+    <div class="tc-grid tc-grid--4" data-recently-viewed data-current-handle="{{ product.handle }}"></div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product information",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_dynamic_checkout",
+      "label": "Show dynamic checkout button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "fallback_image_url",
+      "label": "Fallback image URL",
+      "default": "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=1300&q=80"
+    },
+    {
+      "type": "text",
+      "id": "default_warranty",
+      "label": "Default warranty text",
+      "default": "Store warranty support available"
+    },
+    {
+      "type": "richtext",
+      "id": "default_box_contents",
+      "label": "Default what's in the box",
+      "default": "<p>Product unit, official packaging, included accessories, and receipt.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Do you offer warranty support?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Yes. Warranty terms depend on the product and brand. Keep your receipt for validation.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product information"
+    }
+  ]
+}
+{% endschema %}

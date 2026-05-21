@@ -1,0 +1,42 @@
+<section class="tc-section tc-section--tight">
+  <div class="tc-container">
+    <div class="tc-grid tc-grid--5">
+      {% for block in section.blocks %}
+        <article class="tc-trust-card" {{ block.shopify_attributes }}>
+          <span class="tc-trust-card__icon" aria-hidden="true">{{ block.settings.icon }}</span>
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.text }}</p>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Trust section",
+  "blocks": [
+    {
+      "type": "trust",
+      "name": "Trust item",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Icon text", "default": "✓" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Warranty Support" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Brand and store warranty guidance for every purchase." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust section",
+      "blocks": [
+        { "type": "trust", "settings": { "icon": "WR", "title": "Warranty Support", "text": "Help with warranty claims and service guidance." } },
+        { "type": "trust", "settings": { "icon": "SC", "title": "Secure Checkout", "text": "Encrypted checkout with trusted payment options." } },
+        { "type": "trust", "settings": { "icon": "₱", "title": "GCash / Maya / Card Payments", "text": "Philippine-ready payment options for easier checkout." } },
+        { "type": "trust", "settings": { "icon": "PH", "title": "Metro Manila & Provincial Shipping", "text": "Delivery options for Manila and nationwide orders." } },
+        { "type": "trust", "settings": { "icon": "TA", "title": "Technical Assistance", "text": "Get help choosing compatible parts and upgrades." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

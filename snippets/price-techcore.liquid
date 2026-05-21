@@ -1,0 +1,16 @@
+{% liquid
+  assign price_product = product
+  assign price_variant = variant | default: price_product.selected_or_first_available_variant
+%}
+
+{% if price_product != blank %}
+  <div class="tc-price" aria-label="Price">
+    <span class="tc-price__current">
+      {% if price_product.price_varies %}From {% endif %}
+      {{ price_variant.price | default: price_product.price | money }}
+    </span>
+    {% if price_product.compare_at_price_max > price_product.price %}
+      <s class="tc-price__compare">{{ price_product.compare_at_price_max | money }}</s>
+    {% endif %}
+  </div>
+{% endif %}

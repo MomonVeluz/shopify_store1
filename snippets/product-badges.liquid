@@ -1,0 +1,22 @@
+{% liquid
+  assign badge_product = product
+  assign warranty_text = badge_product.metafields.custom.warranty.value | default: badge_product.metafields.custom.warranty
+%}
+
+{% if badge_product != blank %}
+  <div class="tc-badges">
+    {% if badge_product.compare_at_price_max > badge_product.price %}
+      <span class="tc-badge tc-badge--sale">Sale</span>
+    {% endif %}
+
+    {% if badge_product.available %}
+      <span class="tc-badge tc-badge--success">In stock</span>
+    {% else %}
+      <span class="tc-badge tc-badge--warning">Check availability</span>
+    {% endif %}
+
+    {% if warranty_text != blank %}
+      <span class="tc-badge tc-badge--neutral">{{ warranty_text }}</span>
+    {% endif %}
+  </div>
+{% endif %}

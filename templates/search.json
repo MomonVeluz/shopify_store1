@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-search-techcore",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

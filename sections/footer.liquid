@@ -1,0 +1,87 @@
+<footer class="tc-footer" role="contentinfo">
+  <div class="tc-container">
+    <div class="tc-footer__grid">
+      <div>
+        <h2 class="tc-logo">
+          <span class="tc-logo__mark" aria-hidden="true">TC</span>
+          <span>{{ section.settings.store_name }}</span>
+        </h2>
+        <p>{{ section.settings.tagline }}</p>
+      </div>
+
+      <div>
+        <h3>Shop</h3>
+        <ul>
+          {% if section.settings.shop_menu != blank and section.settings.shop_menu.links.size > 0 %}
+            {% for link in section.settings.shop_menu.links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+          {% else %}
+            <li><a href="/collections/laptops">Laptops</a></li>
+            <li><a href="/collections/pc-parts">PC Parts</a></li>
+            <li><a href="/collections/gaming">Gaming</a></li>
+            <li><a href="/collections/accessories">Accessories</a></li>
+            <li><a href="/collections/deals">Deals</a></li>
+          {% endif %}
+        </ul>
+      </div>
+
+      <div>
+        <h3>Support</h3>
+        <ul>
+          {% if section.settings.support_menu != blank and section.settings.support_menu.links.size > 0 %}
+            {% for link in section.settings.support_menu.links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+          {% else %}
+            <li><a href="/pages/contact-us">Contact Us</a></li>
+            <li><a href="/pages/warranty-returns">Warranty</a></li>
+            <li><a href="/pages/shipping-delivery">Shipping</a></li>
+            <li><a href="/pages/warranty-returns">Returns</a></li>
+            <li><a href="/pages/faqs">FAQs</a></li>
+          {% endif %}
+        </ul>
+      </div>
+
+      <div>
+        <h3>Company</h3>
+        <ul>
+          {% if section.settings.company_menu != blank and section.settings.company_menu.links.size > 0 %}
+            {% for link in section.settings.company_menu.links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+          {% else %}
+            <li><a href="/pages/about-us">About TechCore PH</a></li>
+            <li><a href="/pages/build-your-pc">Build Your PC</a></li>
+            <li><a href="/pages/contact-us">Bulk Orders</a></li>
+          {% endif %}
+        </ul>
+      </div>
+
+      <div>
+        <h3>Payments</h3>
+        <p>{{ section.settings.payment_text }}</p>
+      </div>
+    </div>
+
+    <div class="tc-footer__bottom">
+      <span>&copy; {{ 'now' | date: '%Y' }} {{ section.settings.store_name }}. All rights reserved.</span>
+      <span>{{ section.settings.bottom_text }}</span>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "text", "id": "store_name", "label": "Store name", "default": "TechCore PH" },
+    { "type": "textarea", "id": "tagline", "label": "Tagline", "default": "Power Your Work, Gaming, and Creativity. Premium laptops, PC parts, and workstation gear for the Philippines." },
+    { "type": "link_list", "id": "shop_menu", "label": "Shop menu" },
+    { "type": "link_list", "id": "support_menu", "label": "Support menu" },
+    { "type": "link_list", "id": "company_menu", "label": "Company menu" },
+    { "type": "textarea", "id": "payment_text", "label": "Payment text", "default": "GCash, Maya, Cards, Bank Transfer, COD selected areas" },
+    { "type": "text", "id": "bottom_text", "label": "Bottom text", "default": "Built for fast Philippine tech retail." }
+  ]
+}
+{% endschema %}

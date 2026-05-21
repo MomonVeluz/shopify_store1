@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-collection-techcore",
+      "settings": {
+        "eyebrow": "Shop category",
+        "fallback_description": "Compare specs, availability, warranties, and pricing before you buy.",
+        "products_per_page": 24,
+        "guide_eyebrow": "Buying guide",
+        "guide_title": "How to choose the right upgrade",
+        "guide_text": "<p>Check compatibility, warranty coverage, power requirements, and delivery options before ordering. For PC parts, confirm socket, chipset, RAM generation, case clearance, and PSU capacity.</p>"
+      }
+    }
+  },
+  "order": ["main"]
+}

@@ -1,0 +1,16 @@
+{
+  "current": {
+    "color_background": "#0B0F19",
+    "color_surface": "#111827",
+    "color_surface_light": "#1F2937",
+    "color_primary": "#00A3FF",
+    "color_secondary": "#22D3EE",
+    "color_text": "#F9FAFB",
+    "color_muted": "#9CA3AF",
+    "color_success": "#22C55E",
+    "color_warning": "#F59E0B",
+    "color_sale": "#EF4444",
+    "font_heading": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+    "font_body": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+  }
+}

@@ -1,0 +1,26 @@
+<section class="tc-band">
+  <div class="tc-container tc-band__inner">
+    <div>
+      <p class="tc-eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2 class="tc-section__title">{{ section.settings.title }}</h2>
+      <p class="tc-muted">{{ section.settings.text }}</p>
+    </div>
+    <a class="tc-button" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "PC build CTA",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Custom build service" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Need a Custom PC Build?" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Tell us your budget, games, software, and preferred parts. Our team can recommend a compatible build." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Request a Build Quote" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "presets": [
+    { "name": "PC build CTA" }
+  ]
+}
+{% endschema %}

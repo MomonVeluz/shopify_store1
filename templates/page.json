@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page-techcore",
+      "settings": {
+        "eyebrow": "TechCore PH",
+        "show_page_content": true,
+        "form_mode": "none",
+        "form_title": "Send us a message",
+        "form_button_label": "Submit request"
+      }
+    }
+  },
+  "order": ["main"]
+}

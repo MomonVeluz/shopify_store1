@@ -1,0 +1,252 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-techcore",
+      "settings": {
+        "eyebrow": "Philippine-ready performance tech",
+        "heading": "Power Your Work, Gaming, and Creativity",
+        "subheading": "Shop laptops, components, and accessories built for performance — with Philippine-ready payment and delivery options.",
+        "primary_label": "Shop Laptops",
+        "primary_link": "/collections/gaming-laptops",
+        "secondary_label": "Build Your PC",
+        "secondary_link": "/pages/build-your-pc",
+        "fallback_image_url": "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=1400&q=80",
+        "image_alt": "Modern laptop and performance desk setup with blue lighting",
+        "stat_value": "Fast PH delivery",
+        "stat_label": "Metro Manila pickup and nationwide shipping"
+      }
+    },
+    "categories": {
+      "type": "category-grid",
+      "blocks": {
+        "gaming_laptops": {
+          "type": "category",
+          "settings": {
+            "title": "Gaming Laptops",
+            "text": "High-FPS rigs",
+            "link": "/collections/gaming-laptops",
+            "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=900&q=80"
+          }
+        },
+        "business_laptops": {
+          "type": "category",
+          "settings": {
+            "title": "Business Laptops",
+            "text": "Reliable work machines",
+            "link": "/collections/business-laptops",
+            "image_url": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80"
+          }
+        },
+        "cpus": {
+          "type": "category",
+          "settings": {
+            "title": "CPUs",
+            "text": "Intel and AMD",
+            "link": "/collections/cpus",
+            "image_url": "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=900&q=80"
+          }
+        },
+        "graphics_cards": {
+          "type": "category",
+          "settings": {
+            "title": "Graphics Cards",
+            "text": "Gaming and creator GPUs",
+            "link": "/collections/graphics-cards",
+            "image_url": "https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=900&q=80"
+          }
+        },
+        "motherboards": {
+          "type": "category",
+          "settings": {
+            "title": "Motherboards",
+            "text": "Stable platforms",
+            "link": "/collections/motherboards",
+            "image_url": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80"
+          }
+        },
+        "ram": {
+          "type": "category",
+          "settings": {
+            "title": "RAM",
+            "text": "DDR4 and DDR5 kits",
+            "link": "/collections/memory-ram",
+            "image_url": "https://images.unsplash.com/photo-1562976540-1502c2145186?auto=format&fit=crop&w=900&q=80"
+          }
+        },
+        "storage": {
+          "type": "category",
+          "settings": {
+            "title": "SSDs & Storage",
+            "text": "Fast NVMe upgrades",
+            "link": "/collections/ssds-and-storage",
+            "image_url": "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=900&q=80"
+          }
+        },
+        "monitors": {
+          "type": "category",
+          "settings": {
+            "title": "Monitors",
+            "text": "Work and gaming displays",
+            "link": "/collections/monitors",
+            "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=900&q=80"
+          }
+        },
+        "keyboards_mice": {
+          "type": "category",
+          "settings": {
+            "title": "Keyboards & Mice",
+            "text": "Control and comfort",
+            "link": "/collections/keyboards-and-mice",
+            "image_url": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=900&q=80"
+          }
+        },
+        "networking": {
+          "type": "category",
+          "settings": {
+            "title": "Networking",
+            "text": "WiFi and routing gear",
+            "link": "/collections/networking",
+            "image_url": "https://images.unsplash.com/photo-1606904825846-647eb07f5be2?auto=format&fit=crop&w=900&q=80"
+          }
+        }
+      },
+      "block_order": [
+        "gaming_laptops",
+        "business_laptops",
+        "cpus",
+        "graphics_cards",
+        "motherboards",
+        "ram",
+        "storage",
+        "monitors",
+        "keyboards_mice",
+        "networking"
+      ],
+      "settings": {
+        "eyebrow": "Shop by category",
+        "title": "Find your next upgrade",
+        "text": "Browse laptops, PC parts, peripherals, networking gear, and workstation essentials."
+      }
+    },
+    "featured": {
+      "type": "featured-products-techcore",
+      "settings": {
+        "eyebrow": "Top picks",
+        "title": "Best Sellers",
+        "text": "Fast-moving laptops, components, monitors, and accessories selected for Philippine buyers.",
+        "collection": "best-sellers",
+        "product_limit": 8
+      }
+    },
+    "buyer_guide": {
+      "type": "buyer-guide",
+      "blocks": {
+        "students": {
+          "type": "guide",
+          "settings": {
+            "icon": "ST",
+            "title": "For Students",
+            "text": "Reliable laptops, fast SSDs, webcams, and keyboards for school work.",
+            "link": "/collections/business-laptops",
+            "link_label": "Shop student picks"
+          }
+        },
+        "wfh": {
+          "type": "guide",
+          "settings": {
+            "icon": "WF",
+            "title": "For Work From Home",
+            "text": "Business laptops, monitors, docking gear, routers, and backup storage.",
+            "link": "/collections/business-laptops",
+            "link_label": "Shop WFH gear"
+          }
+        },
+        "gaming": {
+          "type": "guide",
+          "settings": {
+            "icon": "GM",
+            "title": "For Gaming",
+            "text": "Gaming laptops, GPUs, high-refresh monitors, and responsive peripherals.",
+            "link": "/collections/gaming-laptops",
+            "link_label": "Shop gaming"
+          }
+        },
+        "creators": {
+          "type": "guide",
+          "settings": {
+            "icon": "CR",
+            "title": "For Creators",
+            "text": "Color-ready displays, higher RAM, strong CPUs, and creator-grade GPUs.",
+            "link": "/collections/workstations",
+            "link_label": "Shop creator gear"
+          }
+        },
+        "office": {
+          "type": "guide",
+          "settings": {
+            "icon": "OT",
+            "title": "For Office Teams",
+            "text": "Bulk-friendly laptops, accessories, warranties, and deployment support.",
+            "link": "/pages/contact-us",
+            "link_label": "Ask for bulk pricing"
+          }
+        },
+        "builders": {
+          "type": "guide",
+          "settings": {
+            "icon": "PC",
+            "title": "For PC Builders",
+            "text": "Compatible CPUs, boards, RAM, SSDs, cases, cooling, and power supplies.",
+            "link": "/pages/build-your-pc",
+            "link_label": "Request a build"
+          }
+        }
+      },
+      "block_order": ["students", "wfh", "gaming", "creators", "office", "builders"],
+      "settings": {
+        "eyebrow": "Buying guide",
+        "title": "Find the Right Setup"
+      }
+    },
+    "pc_build": {
+      "type": "pc-build-cta",
+      "settings": {
+        "eyebrow": "Custom build service",
+        "title": "Need a Custom PC Build?",
+        "text": "Tell us your budget, games, software, and preferred parts. Our team can recommend a compatible build.",
+        "button_label": "Request a Build Quote",
+        "button_link": "/pages/build-your-pc"
+      }
+    },
+    "trust": {
+      "type": "trust-section",
+      "blocks": {
+        "warranty": { "type": "trust", "settings": { "icon": "WR", "title": "Warranty Support", "text": "Help with warranty claims and service guidance." } },
+        "checkout": { "type": "trust", "settings": { "icon": "SC", "title": "Secure Checkout", "text": "Encrypted checkout with trusted payment options." } },
+        "payments": { "type": "trust", "settings": { "icon": "₱", "title": "GCash / Maya / Card Payments", "text": "Philippine-ready payment options for easier checkout." } },
+        "shipping": { "type": "trust", "settings": { "icon": "PH", "title": "Metro Manila & Provincial Shipping", "text": "Delivery options for Manila and nationwide orders." } },
+        "assistance": { "type": "trust", "settings": { "icon": "TA", "title": "Technical Assistance", "text": "Get help choosing compatible parts and upgrades." } }
+      },
+      "block_order": ["warranty", "checkout", "payments", "shipping", "assistance"],
+      "settings": {}
+    },
+    "deals": {
+      "type": "deal-banner",
+      "settings": {
+        "eyebrow": "Limited offers",
+        "title": "Upgrade Deals",
+        "text": "Save on selected SSDs, RAM kits, monitors, and peripherals.",
+        "button_label": "Shop Deals",
+        "button_link": "/collections/deals"
+      }
+    },
+    "seo": {
+      "type": "seo-content",
+      "settings": {
+        "title": "Laptops and Computer Parts in the Philippines",
+        "text": "<p>Shop laptops, gaming PCs, computer parts, and accessories in the Philippines. Find performance laptops, CPUs, GPUs, motherboards, RAM, SSDs, monitors, and peripherals for gaming, business, school, and content creation.</p>"
+      }
+    }
+  },
+  "order": ["hero", "categories", "featured", "buyer_guide", "pc_build", "trust", "deals", "seo"]
+}

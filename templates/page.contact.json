@@ -1,0 +1,28 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page-techcore",
+      "blocks": {
+        "hours": {
+          "type": "feature",
+          "settings": {
+            "eyebrow": "Support",
+            "title": "Need help choosing parts?",
+            "text": "Send your target budget, preferred brands, current specs, or use case. The team can help narrow down the right laptop, upgrade, or build path."
+          }
+        }
+      },
+      "block_order": ["hours"],
+      "settings": {
+        "eyebrow": "Contact",
+        "title": "Contact TechCore PH",
+        "intro": "Questions about stock, compatibility, delivery, COD availability, warranty, or bulk orders? Send a message and the team will reply.",
+        "show_page_content": true,
+        "form_mode": "contact",
+        "form_title": "Send us a message",
+        "form_button_label": "Send message"
+      }
+    }
+  },
+  "order": ["main"]
+}

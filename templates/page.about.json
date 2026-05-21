@@ -1,0 +1,41 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page-techcore",
+      "blocks": {
+        "story": {
+          "type": "rich_text",
+          "settings": {
+            "title": "About TechCore PH",
+            "text": "<p>TechCore PH helps Filipino customers choose performance laptops, PC components, gaming accessories, and workstation equipment with clear specs, practical advice, and Philippine-ready delivery and payment options.</p>"
+          }
+        },
+        "catalog": {
+          "type": "feature",
+          "settings": {
+            "eyebrow": "Performance-first catalog",
+            "title": "Built around real buying decisions",
+            "text": "Every product page highlights specs, warranty details, stock status, and compatibility notes so customers can compare quickly."
+          }
+        },
+        "support": {
+          "type": "feature",
+          "settings": {
+            "eyebrow": "Local support mindset",
+            "title": "Designed for Philippine buyers",
+            "text": "The store supports local payment options, Metro Manila delivery, provincial shipping, pickup messaging, and technical assistance."
+          }
+        }
+      },
+      "block_order": ["story", "catalog", "support"],
+      "settings": {
+        "eyebrow": "About",
+        "title": "Premium tech retail for work, gaming, and creativity",
+        "intro": "Modern hardware, clear specs, and guidance for laptops, parts, and custom PC builds.",
+        "show_page_content": true,
+        "form_mode": "none"
+      }
+    }
+  },
+  "order": ["main"]
+}

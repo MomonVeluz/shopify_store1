@@ -1,0 +1,19 @@
+{% liquid
+  assign spec_limit = limit | default: 3
+  assign specs_raw = specs
+  if product != blank
+    assign product_specs = product.metafields.custom.key_specs.value | default: product.metafields.custom.key_specs
+    if product_specs != blank
+      assign specs_raw = product_specs
+    endif
+  endif
+  assign spec_items = specs_raw | split: ','
+%}
+
+{% if specs_raw != blank %}
+  <ul class="tc-key-specs" aria-label="Key specifications">
+    {% for spec in spec_items limit: spec_limit %}
+      <li>{{ spec | strip }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
